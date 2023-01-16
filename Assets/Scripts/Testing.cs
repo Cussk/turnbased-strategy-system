@@ -20,4 +20,14 @@ public class Testing : MonoBehaviour
     {
         Debug.Log(gridSystem.GetGridPosition(MouseWorld.GetPosition()));
     }*/
+
+    [SerializeField] Unit unit;
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            unit.GetMoveAction().GetValidGridPositionList();
+        }
+    }
 }
