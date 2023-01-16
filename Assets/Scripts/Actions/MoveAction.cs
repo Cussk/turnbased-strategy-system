@@ -42,7 +42,7 @@ public class MoveAction : MonoBehaviour
         this.targetPosition = LevelGrid.Instance.GetWorldPosition(gridPosition);
     }
 
-    public bool IsValidACtionGRidPosition(GridPosition gridPosition)
+    public bool IsValidActionGridPosition(GridPosition gridPosition)
     {
         List<GridPosition> validGridPositionList = GetValidGridPositionList();
         return GetValidGridPositionList().Contains(gridPosition);
