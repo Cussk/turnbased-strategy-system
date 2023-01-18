@@ -6,11 +6,12 @@ using UnityEngine.EventSystems;
 
 public class MoveAction : BaseAction
 {
+    public event EventHandler OnStartMoving;
+    public event EventHandler OnStopMoving;
+
     [SerializeField] private float stoppingDistance = 0.1f;
-    [SerializeField] private float moveSpeed = 4.0f;
-    [SerializeField] private float rotateSpeed = 10.0f;
+    [SerializeField] private float moveSpeed = 4.0f; 
     [SerializeField] private int maxMoveDistance = 4;
-    [SerializeField] private Animator unitAnimator;
 
     private Vector3 targetPosition;
     
@@ -33,25 +34,25 @@ public class MoveAction : BaseAction
         if (Vector3.Distance(transform.position, targetPosition) > stoppingDistance)
         {
             transform.position += moveDirection * moveSpeed * Time.deltaTime;
-
-            unitAnimator.SetBool("IsWalking", true);
         }
         else
         {
-            unitAnimator.SetBool("IsWalking", false);
-            isActive = false;
-            onActionComplete();
+            OnStopMoving?.Invoke(this, EventArgs.Empty);
+
+            ActionComplete();
         }
 
+        float rotateSpeed = 10.0f;
         transform.forward = Vector3.Lerp(transform.forward, moveDirection, Time.deltaTime * rotateSpeed); //rotates player to direction being moved to
     }
 
     //move action
     public override void TakeAction(GridPosition gridPosition, Action onActionComplete)
     {
-        this.onActionComplete = onActionComplete;
+        ActionStart(onActionComplete);
         this.targetPosition = LevelGrid.Instance.GetWorldPosition(gridPosition);
-        isActive = true;
+
+        OnStartMoving?.Invoke(this, EventArgs.Empty);
     }
 
     public override List<GridPosition> GetValidActionGridPositionList()

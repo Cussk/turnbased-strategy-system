@@ -44,6 +44,11 @@ public class UnitActionSystem : MonoBehaviour
             return;
         }
 
+        if (!TurnSystem.Instance.IsPlayerTurn())
+        {
+            return;
+        }
+
         //if mouse over ui component will not activate an action
         if (EventSystem.current.IsPointerOverGameObject())
         {
@@ -126,6 +131,13 @@ public class UnitActionSystem : MonoBehaviour
                         //Unit is already selected
                         return false;
                     }
+
+                    if (unit.IsEnemy())
+                    {
+                        //clicked on enemy
+                        return false;
+                    }
+
                     SetSelectedUnit(unit);
                     return true;
                 }
