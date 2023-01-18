@@ -29,7 +29,7 @@ public class Testing : MonoBehaviour
         {
             GridSystemVisual.Instance.HideAllGridPosition();
             GridSystemVisual.Instance.ShowGridPositionList(
-            unit.GetMoveAction().GetValidGridPositionList());
+            unit.GetMoveAction().GetValidActionGridPositionList());
         }
     }
 }
