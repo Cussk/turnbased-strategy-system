@@ -1324,7 +1324,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: faea3b0db7a17a04899fb8a93e13f74d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unit: {fileID: 941410282}
 --- !u!4 &708546023
 Transform:
   m_ObjectHideFlags: 0
@@ -1371,6 +1370,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridSystemVisualSinglePrefab: {fileID: 6572833312454106273, guid: 36cda9f949d3fb34f936376500544904,
     type: 3}
+  gridVisualTypeMaterialList:
+  - gridVisualType: 0
+    material: {fileID: 2100000, guid: 94bce35097455194695534d450eb0038, type: 2}
+  - gridVisualType: 1
+    material: {fileID: 2100000, guid: 2699352b16ef72f4ab9db1928c2bde55, type: 2}
+  - gridVisualType: 2
+    material: {fileID: 2100000, guid: dd8970278d835fc4f80443973cfa6c89, type: 2}
+  - gridVisualType: 4
+    material: {fileID: 2100000, guid: 90a66bab0588db54da95d5555919aa67, type: 2}
+  - gridVisualType: 5
+    material: {fileID: 2100000, guid: 907f506f426205d4686bf8b188c078be, type: 2}
+  - gridVisualType: 3
+    material: {fileID: 2100000, guid: d4f8fc58d80336e47a60358371902779, type: 2}
 --- !u!4 &720367817
 Transform:
   m_ObjectHideFlags: 0
@@ -1711,7 +1723,7 @@ MonoBehaviour:
   m_BlendUpdateMethod: 1
   m_DefaultBlend:
     m_Style: 1
-    m_Time: 2
+    m_Time: 0.2
     m_CustomCurve:
       serializedVersion: 2
       m_Curve: []

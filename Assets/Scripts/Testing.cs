@@ -21,7 +21,7 @@ public class Testing : MonoBehaviour
         Debug.Log(gridSystem.GetGridPosition(MouseWorld.GetPosition()));
     }*/
 
-    [SerializeField] Unit unit;
+    /*[SerializeField] Unit unit;
 
     private void Update()
     {
@@ -31,5 +31,5 @@ public class Testing : MonoBehaviour
             GridSystemVisual.Instance.ShowGridPositionList(
             unit.GetMoveAction().GetValidActionGridPositionList());
         }
-    }
+    }*/
 }
