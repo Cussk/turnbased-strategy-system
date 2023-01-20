@@ -6,14 +6,14 @@ using UnityEngine;
 public class Unit : MonoBehaviour
 {
     public static event EventHandler OnAnyActionPointsChanged;
+    public static event EventHandler OnAnyUnitSpawned;
+    public static event EventHandler OnAnyUnitDead;
 
     [SerializeField] private int actionPointsMax = 2;
     [SerializeField] private bool isEnemy;
 
     private GridPosition gridPosition;
     private HealthSystem healthSystem;
-    private MoveAction moveAction;
-    private SpinAction spinAction;
     private BaseAction[] baseActionArray;
     private int actionPoints = 2;
 
@@ -21,8 +21,6 @@ public class Unit : MonoBehaviour
     {
         actionPoints = actionPointsMax;
         healthSystem = GetComponent<HealthSystem>();
-        moveAction = GetComponent<MoveAction>();
-        spinAction = GetComponent<SpinAction>();
         baseActionArray = GetComponents<BaseAction>();
     }
 
@@ -34,6 +32,8 @@ public class Unit : MonoBehaviour
         TurnSystem.Instance.OnTurnChanged += TurnSystem_OnTurnChanged;
 
         healthSystem.OnDead += HealthSystem_OnDead;
+
+        OnAnyUnitSpawned?.Invoke(this, EventArgs.Empty);
     }
 
 
@@ -52,13 +52,19 @@ public class Unit : MonoBehaviour
         }
     }
 
-    public MoveAction GetMoveAction()
+    //generic to access actions through base action array
+    public T GetAction<T>() where T : BaseAction
     {
-        return moveAction;
-    } public SpinAction GetSpinAction()
-    {
-        return spinAction;
-    } 
+        foreach (BaseAction baseAction in baseActionArray) 
+        {
+            if (baseAction is T)
+            {
+                return (T)baseAction;
+            }
+        }
+
+        return null;
+    }
 
     public GridPosition GetGridPosition()
     {
@@ -135,6 +141,13 @@ public class Unit : MonoBehaviour
         LevelGrid.Instance.RemoveUnitAtGridPosition(gridPosition, this);
 
         Destroy(gameObject);
+
+        OnAnyUnitDead?.Invoke(this, EventArgs.Empty);
+    }
+
+    public float GetHealthNormalized()
+    {
+        return healthSystem.GetHealthNormalized();
     }
 }
 
