@@ -10,7 +10,8 @@ public class UnitRagdoll : MonoBehaviour
     {
         MatchAllChildTransforms(originalRootBone, ragdollRootBone);
 
-        ApplyExplosionToRagdoll(ragdollRootBone, 300.0f, transform.position, 10.0f);
+        Vector3 randomDirection = new Vector3(Random.Range(-1f, +1f), 0, Random.Range(-1f, +1f));
+        ApplyExplosionToRagdoll(ragdollRootBone, 300.0f, transform.position + randomDirection, 10.0f);
     }
 
     //recursive function to find and copy all bones in skeleton
