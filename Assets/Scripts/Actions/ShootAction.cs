@@ -45,7 +45,7 @@ public class ShootAction : BaseAction
                 Vector3 aimDirection = targetUnit.GetWorldPosition() - unit.GetWorldPosition().normalized;
 
                 float rotateSpeed = 10.0f;
-                transform.forward = Vector3.Lerp(transform.forward, aimDirection, Time.deltaTime * rotateSpeed); //rotates player towards enemy being shot at
+                transform.forward = Vector3.Lerp(transform.forward, aimDirection, Time.deltaTime * rotateSpeed); //rotates player towards enemy being attacked at
                 break;
             case State.Shooting:
                 if (canShootBullet)
