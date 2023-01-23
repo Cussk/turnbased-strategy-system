@@ -14,8 +14,6 @@ public class InteractAction : BaseAction
         {
             return;
         }
-
-        ActionComplete();
     }
 
     public override string GetActionName()
@@ -50,6 +48,14 @@ public class InteractAction : BaseAction
                     continue;
                 }
 
+                IInteractable interactable = LevelGrid.Instance.GetInteractableAtGridPosition(testGridPosition);
+
+                if (interactable == null)
+                {
+                    //No interactable on this grid position
+                    continue;
+                }
+
                 validGridPositionList.Add(testGridPosition);
             }
         }
@@ -59,7 +65,15 @@ public class InteractAction : BaseAction
 
     public override void TakeAction(GridPosition gridPosition, Action onActionComplete)
     {
-        Debug.Log("Interact Action");
+        IInteractable interactable = LevelGrid.Instance.GetInteractableAtGridPosition(gridPosition);
+
+        interactable.Interact(OnInteractComplete);
+
         ActionStart(onActionComplete);
+    }
+
+    private void OnInteractComplete()
+    {
+        ActionComplete();
     }
 }

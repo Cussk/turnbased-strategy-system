@@ -71,6 +71,16 @@ public class Pathfinding : MonoBehaviour
 
         openList.Add(startNode);
 
+        Unit[] units = FindObjectsOfType<Unit>();
+        foreach (Unit unit in units)
+        {
+            GridPosition gridPosition = unit.GetGridPosition();
+            if (startGridPosition != gridPosition)
+            {
+                closedList.Add(gridSystem.GetGridObject(gridPosition));
+            }
+        }
+
         for (int x =0; x < gridSystem.GetWidth(); x++)
         {
             for (int z = 0; z < gridSystem.GetHeight(); z++)
