@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class InteractSphere : MonoBehaviour, IInteractable
@@ -8,6 +9,7 @@ public class InteractSphere : MonoBehaviour, IInteractable
     [SerializeField] private Material greenMaterial;
     [SerializeField] private Material redMaterial;
     [SerializeField] private MeshRenderer meshRenderer;
+    [SerializeField] private MovingWall movingWallGameObject;
 
     private GridPosition gridPosition;
     private Action onInteractionComplete;
@@ -15,13 +17,18 @@ public class InteractSphere : MonoBehaviour, IInteractable
     private bool isActive;
     private float timer;
 
+    private void Awake()
+    {
+        movingWallGameObject = movingWallGameObject.GetComponent<MovingWall>();
+    }
+
     private void Start()
     {
         gridPosition = LevelGrid.Instance.GetGridPosition(transform.position);
         LevelGrid.Instance.SetInteractableAtGridPosition(gridPosition, this);
 
 
-        SetColorGreen();
+        SetColorRed();
     }
 
     private void Update()
@@ -62,10 +69,12 @@ public class InteractSphere : MonoBehaviour, IInteractable
         if (isGreen)
         {
             SetColorRed();
+            movingWallGameObject.CloseWall();
         }
         else
         {
             SetColorGreen();
+            movingWallGameObject.OpenWall();
         }
     }
 }

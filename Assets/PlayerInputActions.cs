@@ -101,7 +101,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 {
                     ""name"": ""left"",
                     ""id"": ""fb7a673c-d0cb-450a-bb21-4115de5da47a"",
-                    ""path"": ""<Keyboard>/s"",
+                    ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

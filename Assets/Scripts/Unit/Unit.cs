@@ -9,13 +9,13 @@ public class Unit : MonoBehaviour
     public static event EventHandler OnAnyUnitSpawned;
     public static event EventHandler OnAnyUnitDead;
 
-    [SerializeField] private int actionPointsMax = 2;
+    [SerializeField] private int actionPointsMax = 3;
     [SerializeField] private bool isEnemy;
 
     private GridPosition gridPosition;
     private HealthSystem healthSystem;
     private BaseAction[] baseActionArray;
-    private int actionPoints = 2;
+    private int actionPoints = 3;
 
     private void Awake()
     {

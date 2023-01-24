@@ -49,7 +49,7 @@ public class SwordAction : BaseAction
         switch (state)
         {
             case State.SwingingSwordBeforeHit:
-                Vector3 aimDirection = targetUnit.GetWorldPosition() - unit.GetWorldPosition().normalized;
+                Vector3 aimDirection = (targetUnit.GetWorldPosition() - unit.GetWorldPosition()).normalized;
 
                 float rotateSpeed = 10.0f;
                 transform.forward = Vector3.Lerp(transform.forward, aimDirection, Time.deltaTime * rotateSpeed); //rotates player towards enemy being attacked at
